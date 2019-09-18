@@ -4,7 +4,7 @@ import bodyParser from 'body-parser'
 import path from 'path'
 import Datas from './uploadData'
 // import Member from './members'
-// import User from './user'
+import User from './user'
 
 const app = express()
 const port = process.env.PORT || 3001
@@ -30,61 +30,58 @@ mongoose.connect(dbUrl, dbErr => {
         })
     })
 
-    // app.post('/login/acount',(request,response) => {
-    //     const username = request.body.name
-    //     const password = request.body.password
-    //     User.find({ "username" : username }, (err, result) =>{
-    //         if (err)
-    //             console.log(err);
+    app.post('/createAcount',(request,response) => {
+        const loginName = request.body.name
+        const loginPassword = request.body.password
+        User.find({ "loginName" : loginName }, (err, result) =>{
+            if (err)
+                console.log(err);
         
-    //         // 新規登録
-    //         if (result.length == 0){
-    //             var user = new User()
+            // 新規登録
+            if (result.length == 0){
+                var user = new User()
         
-    //             user.username = username
-    //             user.password = password
-    //             user.favorite = ''
-        
-    //             user.save((err) => {
-    //             if (err) console.log(err)
-    //             response.send("アカウントを作成しました。ログインをお願いします。")
-    //             })
-    //         }
-    //         // usernameがDBに存在した場合
-    //         else{
-    //             response.send('既にアカウントが存在しています。')
-    //         }
-    //     })
-    // })
+                user.loginName = loginName
+                user.loginPassword = loginPassword
+                user.save((err) => {
+                if (err) console.log(err)
+                response.send("アカウントを作成しました。ログインをお願いします。")
+                })
+            }
+            // usernameがDBに存在した場合
+            else{
+                response.send('既にアカウントが存在しています。')
+            }
+        })
+    })
 
-    // app.post('/login',(request,response) => {
-    //     const username = request.body.name
-    //     const password = request.body.password
-    //     User.find({ "username" : username }, (err, result) =>{
-    //         if (err)
-    //             console.log(err);
+    app.post('/login',(request,response) => {
+        const loginName = request.body.name
+        const loginPassword = request.body.password
+        User.find({ "loginName" : loginName }, (err, result) =>{
+            if (err)
+                console.log(err);
         
-    //         // 新規登録
-    //         if (result.length == 0){
-    //             response.send("アカウントがありません。登録してください。")
-    //         }
-    //         // usernameがDBに存在した場合
-    //         else{
-    //             if (result[0].password == password)
-    //             response.send(
-    //                 {
-    //                     text: "ログインに成功しました。",
-    //                     status: "login",
-    //                     _id:result[0]._id,
-    //                     name: result[0].username,
-    //                     favorite: result[0].favorite
-    //                 },
-    //             )
-    //             else
-    //             response.send({text: "パスワードが違います。",status: "logout"});
-    //         }
-    //     })
-    // })
+            // 新規登録
+            if (result.length == 0){
+                response.send("アカウントがありません。登録してください。")
+            }
+            // usernameがDBに存在した場合
+            else{
+                if (result[0].loginPassword == loginPassword)
+                response.send(
+                    {
+                        text: "ログインに成功しました。",
+                        status: "login",
+                        _id:result[0]._id,
+                        name: result[0].loginName,
+                    },
+                )
+                else
+                response.send({text: "パスワードが違います。",status: "err"});
+            }
+        })
+    })
 
     app.listen(port,err => {
         if(err) throw new Error(err)

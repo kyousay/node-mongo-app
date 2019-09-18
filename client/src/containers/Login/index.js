@@ -1,10 +1,19 @@
 import { connect } from 'react-redux'
 import index from '../../components/Login'
+import { changeLoading } from '../../actions/'
 
-const mapStateToProps = ({user}) => {
+const mapStateToProps = (state) => {
     return{
-        user
+        state
     }
 }
 
-export default connect(mapStateToProps,{})(index)
+const mapDispatchToProps = (dispatch) => {
+    return{
+        changeLoading: (boolean) => {
+            dispatch(changeLoading(boolean))
+        }
+    }
+} 
+
+export default connect(mapStateToProps,mapDispatchToProps)(index)

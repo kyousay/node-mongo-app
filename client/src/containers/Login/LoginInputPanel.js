@@ -10,12 +10,12 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return{
-    //     createAcount:(data) => {
-    //         dispatch(createAcount(data))
-    //     },
-    //     loginAcount: (data) => {
-    //         dispatch(loginAcount(data))
-    //     }
+        createAcount:(data) => {
+            dispatch(createAcount(data))
+        },
+        loginAcount: (data) => {
+            dispatch(loginAcount(data))
+        }
     }
 }
 

@@ -33,3 +33,17 @@ export const postUpload = (boolean) => ({
     type: 'POST_UPLOAD',
     payload: boolean
 }) 
+
+export const loginAcount = (data) => ({
+    type: 'LOGIN_ACOUNT',
+    payload: {
+        ...data
+    }
+})
+
+export const createAcount = (data) => ({
+    type: 'CREATE_ACOUNT',
+    payload: {
+        ...data
+    }
+})

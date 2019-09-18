@@ -1,12 +1,10 @@
 import React,{ useState } from 'react'
 import styled from 'styled-components'
 import LoginTitle from './LoginTitle'
-import LoginInputPanel from '../containers/Login/LoginInputPanel'
+import LoginInputPanel from '../../containers/Login/LoginInputPanel'
 
 const LoginPanel = styled.div`
-    margin: 80px auto;
-    width: 396px;
-    padding 22px 108px 26px;
+    padding: 50px 0;
     background-color: #fff;
     box-sizing: unset;
 `

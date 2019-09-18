@@ -1,5 +1,5 @@
 import axios from 'axios'
-
+//timeoutをつけたい
 export const postDataFactory = (connectConfig = {}) => {
     const config = {
         ...connectConfig,
@@ -22,4 +22,52 @@ export const postDataFactory = (connectConfig = {}) => {
         }
     }
     return postData
+}
+
+export const createAcountFactory = (connectConfig = {}) => {
+    const config = {
+        ...connectConfig,
+    }
+    const instance = axios.create(config)
+
+    const createAcount = async (data) => {
+        console.log(data)
+        try{
+            const response = await instance.post('/createAcount',data)
+
+            if(response.status !== 200) {
+                throw new Error ('Server Error')
+            }
+            const result = response
+
+            return result
+        }catch(err) {
+            throw err
+        }
+    }
+    return createAcount
+}
+
+export const loginAcountFactory = (connectConfig = {}) => {
+    const config = {
+        ...connectConfig,
+    }
+    const instance = axios.create(config)
+
+    const loginAcount = async (data) => {
+        console.log(data)
+        try{
+            const response = await instance.post('/login',data)
+
+            if(response.status !== 200) {
+                throw new Error ('Server Error')
+            }
+            const result = response
+
+            return result
+        }catch(err) {
+            throw err
+        }
+    }
+    return loginAcount
 } 

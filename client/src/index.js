@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import App from './components/App'
+import App from './containers/App'
 import { createBrowserHistory } from 'history'
 import { connectRouter,routerMiddleware, ConnectedRouter } from 'connected-react-router'
 import { createStore,applyMiddleware, combineReducers } from 'redux'

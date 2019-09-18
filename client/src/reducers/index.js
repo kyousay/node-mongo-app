@@ -9,6 +9,15 @@ const initialState = {
         mail: "",
         confirm: ""
     },
+    user: {
+        id: "",
+        thumbnail: "",
+        last: "",
+        first: "",
+        kana_last: "",
+        kana_first: "",
+        mail: "",
+    },
     loading: false,
     postUpload: false,
 }

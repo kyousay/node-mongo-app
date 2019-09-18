@@ -167,14 +167,8 @@ class Confirm extends Component {
 
     render() {
         const {state} = this.props
-        const loadingElement = state.loading ? 
-            <LoadingWrapper>
-                <ClipLoader css={override} sizeUnit={"px"} size={200} color={"#9370db"} loading={state.loading} />
-            </LoadingWrapper>
-        : null
         return(
             <>  
-                {loadingElement}
                 <NoteText styled={{margin:"40px"}}>入力内容をご確認ください</NoteText>
                 <Form styled={{padding: "40px 0"}} id="form" action="/upload" method="post" onSubmit={(e) => {this.sendInformation(e)}}>
                     <input type="hidden" name="image" value={state.image} />
