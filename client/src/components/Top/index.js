@@ -10,6 +10,7 @@ import Way from './Way'
 import Announce from './Announce'
 import Terms from './Terms'
 import Footer from './Footer'
+import Header from '../../containers/common/Header'
 
 const Top = styled.div`
     position: relative;
@@ -32,6 +33,7 @@ const Content = styled.div`
 export default () => {
     return(
         <Top>
+            <Header />
             <MV />
             <Content>
                 <About />

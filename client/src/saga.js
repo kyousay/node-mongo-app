@@ -8,7 +8,7 @@ function* postData(action) {
     const data = yield call(api,action.payload)
     yield alert(data.data)
     yield put(Action.changeLoading(false))
-    yield put(Action.resetStore)
+    yield put(Action.resetStore())
     yield put(push('/form/complete'))
 }
 
