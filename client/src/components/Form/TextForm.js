@@ -110,8 +110,8 @@ class TextForm extends Component {
         this.state = {...this.props.state}
     }
     componentDidMount() {
-        if(this.props.image === ""){
-            console.log('dioa')
+        console.log(this.props)
+        if(this.props.image === "" || this.props.image === undefined || this.props.image === null){
             alert("申し訳ございませんが、写真選択からやり直してください。")
             this.props.history.push('/form/receipt')
         }   

@@ -4,7 +4,9 @@ import Confirm from '../../components/Form/Confirm'
 
 const mapStateToProps = (state) => {
     return{
-        state
+        state: {
+            ...state.AppReducer
+        }
     }
 }
 
@@ -18,7 +20,7 @@ const mapDispatchToProps = (dispatch) => {
         },
         postData: (e) => {
             dispatch(postData(e))
-        }
+        },
     }
 }
 

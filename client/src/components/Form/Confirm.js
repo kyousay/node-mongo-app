@@ -1,13 +1,11 @@
 import React,{Component} from 'react'
 import { Link } from 'react-router-dom'
 import { withRouter } from 'react-router'
-import axios from 'axios'
 import styled from 'styled-components'
 import { css } from '@emotion/core'
 import ClipLoader from 'react-spinners/ClipLoader'
 import { mediaMobile } from '../../styles/common'
 import { calculate } from '../../styles/common'
-import { postData } from '../../actions'
 
 const Form = styled.form`
     padding:${(props) => props.styled.padding}
@@ -155,14 +153,17 @@ class Confirm extends Component {
         if(this.props.state.image === ""){
             alert("申し訳ございませんが、写真選択からやり直してください。")
             this.props.history.push('/form/receipt')
-        }   
+        }
     }
     sendInformation = (e) => {
         e.preventDefault()
         this.props.changeLoading(true)
-        let formData = new FormData(e.target)
+        const formData = {
+            ...this.props.state
+        }
         this.props.postData(formData)
     }
+    
 
     render() {
         const {state} = this.props

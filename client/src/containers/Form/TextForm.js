@@ -2,12 +2,12 @@ import TextForm from '../../components/Form/TextForm'
 import { connect } from 'react-redux'
 import { inputData } from '../../actions'
 
-const mapStateToProps = ({form,image}) => {
+const mapStateToProps = (state) => {
     return{
-        state : {
-            ...form    
+        state: {
+            ...state.AppReducer.form
         },
-        image 
+        image: state.AppReducer.image
     }
 }
 

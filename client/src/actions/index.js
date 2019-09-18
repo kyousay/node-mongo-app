@@ -28,3 +28,8 @@ export const postData = (props) => ({
     type: 'POST_DATA',
     payload: props
 })
+
+export const postUpload = (boolean) => ({
+    type: 'POST_UPLOAD',
+    payload: boolean
+}) 

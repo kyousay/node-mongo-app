@@ -9,7 +9,8 @@ const initialState = {
         mail: "",
         confirm: ""
     },
-    loading: false
+    loading: false,
+    postUpload: false,
 }
 
 const AppReducer = ( state = initialState,action ) => {
@@ -34,6 +35,11 @@ const AppReducer = ( state = initialState,action ) => {
             }
         case 'RESET_STORE' :
             return initialState
+        case 'POST_UPLOAD' :
+            return{
+                ...state,
+                postUpload: action.payload
+            }
         default :
             return state
     }
