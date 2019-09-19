@@ -70,4 +70,28 @@ export const loginAcountFactory = (connectConfig = {}) => {
         }
     }
     return loginAcount
+}
+
+export const upLoadThumbnailFactory = (connectConfig = {}) => {
+    const config = {
+        ...connectConfig,
+    }
+    const instance = axios.create(config)
+
+    const upLoadThumbnail = async (data) => {
+        console.log(data)
+        try{
+            const response = await instance.post('/mypage',data)
+
+            if(response.status !== 200) {
+                throw new Error ('Server Error')
+            }
+            const result = response
+
+            return result
+        }catch(err) {
+            throw err
+        }
+    }
+    return upLoadThumbnail
 } 

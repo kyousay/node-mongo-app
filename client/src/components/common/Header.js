@@ -39,7 +39,7 @@ const LinkText = styled.p`
 const Header = (props) => {
     const [flg,flgSet] = useState(true)
     useEffect(() => {
-        if(props.state.router.location.pathname === '/login'){
+        if(props.state.router.location.pathname !== '/'){
             flgSet(false)
         }else{
             flgSet(true)

@@ -11,6 +11,7 @@ const initialState = {
     },
     user: {
         id: "",
+        loginName:"",
         thumbnail: "",
         last: "",
         first: "",
@@ -48,6 +49,18 @@ const AppReducer = ( state = initialState,action ) => {
             return{
                 ...state,
                 postUpload: action.payload
+            }
+        case 'SET_LOGININFO' :
+            const data = Object.assign(state.user,action.payload)
+            return{
+                ...state,
+                user: data, 
+            }
+        case 'SET_THUMBNAIL' :
+            const  newData = Object.assign(state.user,action.payload)
+            return{
+                ...state,
+                user: newData,
             }
         default :
             return state

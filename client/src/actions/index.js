@@ -47,3 +47,24 @@ export const createAcount = (data) => ({
         ...data
     }
 })
+
+export const setLoginInfo = (data) => ({
+    type: 'SET_LOGININFO',
+    payload: {
+        ...data
+    }
+})
+
+export const upLoadThumbnail = (data) => ({
+    type: 'UPLOAD_THUMBNAIL',
+    payload: {
+        ...data
+    }
+})
+
+export const setThumbnail = (thumbnail) => ({
+    type: 'SET_THUMBNAIL',
+    payload: {
+        thumbnail
+    }
+})

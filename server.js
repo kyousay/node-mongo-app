@@ -72,15 +72,37 @@ mongoose.connect(dbUrl, dbErr => {
                 response.send(
                     {
                         text: "ログインに成功しました。",
-                        status: "login",
-                        _id:result[0]._id,
-                        name: result[0].loginName,
+                        user: {
+                            id:result[0]._id,
+                            loginName: result[0].loginName,
+                            last: result[0].last,
+                            first: result[0].first,
+                            kana_last: result[0].kana_last,
+                            kana_first: result[0].kana_first,
+                            mail : result[0].mail,
+                            thumbnail: result[0].thumbnail,
+                        }
                     },
                 )
                 else
-                response.send({text: "パスワードが違います。",status: "err"});
+                response.send({text: "パスワードが違います。"});
             }
         })
+    })
+
+    app.post('/mypage',(request,response) => {
+        const _id = request.body.id
+        const thumbnail = request.body.thumbnail
+
+        User.findByIdAndUpdate(_id, { thumbnail: thumbnail }, err => {
+            if (err) response.status(500).send()
+            else {  // updateに成功した場合、すべてのデータをあらためてfindしてクライアントに送る
+                User.find({_id:_id}, (findErr, characterArray) => {
+                    if (findErr) response.status(500).send()
+                    else response.status(200).send({thumbnail:characterArray[0].thumbnail})
+                })
+            }
+            })
     })
 
     app.listen(port,err => {

@@ -1,7 +1,7 @@
 import {  call, fork, put, takeLatest } from 'redux-saga/effects'
 import * as Action from './actions/'
 import { push } from 'connected-react-router'
-import { postDataFactory,createAcountFactory,loginAcountFactory } from './services/api'
+import { postDataFactory,createAcountFactory,loginAcountFactory,upLoadThumbnailFactory } from './services/api'
 
 function* postData(action) {
     const api = postDataFactory()
@@ -25,15 +25,27 @@ function* loginAcount(action) {
     yield put(Action.changeLoading(true))
     const data = yield call(api,action.payload)
     yield put(Action.changeLoading(false))
+    yield put(Action.setLoginInfo({
+            ...data.data.user
+        }))
     yield alert(data.data.text)
     yield put(push('/mypage'))
-    sessionStorage.nogi = 'true'
+    // sessionStorage.nogi = ('true')
+}
+
+function* upLoadThumbnail(action) {
+    const api = upLoadThumbnailFactory()
+    yield put(Action.changeLoading(true))
+    const data = yield call(api,action.payload)
+    yield put(Action.changeLoading(false))
+    yield put(Action.setThumbnail(data.data.thumbnail))
 }
 
 function* waitForAction() {
     yield takeLatest('POST_DATA',postData)
     yield takeLatest('CREATE_ACOUNT',createAcount)
     yield takeLatest('LOGIN_ACOUNT',loginAcount)
+    yield takeLatest('UPLOAD_THUMBNAIL',upLoadThumbnail)
 }
 
 export default function* rootSaga() {

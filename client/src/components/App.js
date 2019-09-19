@@ -48,7 +48,6 @@ const LoadingWrapper = styled.div`
 
 export default class extends Component{
     render(){
-        console.log(this.props)
         const {loading} = this.props.state.AppReducer
         const loadingElement = loading ? 
             <LoadingWrapper>
