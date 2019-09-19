@@ -1,4 +1,4 @@
-import React, {useEffect,useState} from 'react'
+import React from 'react'
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 import logo from '../../styles/img/logo.jpg'
@@ -37,24 +37,12 @@ const LinkText = styled.p`
 `
 
 const Header = (props) => {
-    const [flg,flgSet] = useState(true)
-    useEffect(() => {
-        if(props.state.router.location.pathname !== '/'){
-            flgSet(false)
-        }else{
-            flgSet(true)
-        }
-    })
 
     return(
         <>
             <HeaderWrapper>
                 <HeaderLogo src={logo} />
-                {   flg ?
-                    <Link to="/login"><LinkText>MyPage</LinkText></Link>
-                    :
-                    <Link to="/"><LinkText>TopPage</LinkText></Link>
-                }
+                    <Link to={`${props.link}`}><LinkText>{props.text}</LinkText></Link>
             </HeaderWrapper>
         </>
     )

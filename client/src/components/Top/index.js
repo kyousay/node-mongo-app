@@ -33,7 +33,7 @@ const Content = styled.div`
 export default () => {
     return(
         <Top>
-            <Header />
+            <Header text={"MyPage"} link={"/login"}/>
             <MV />
             <Content>
                 <About />

@@ -210,7 +210,7 @@ export default class extends Component{
     constructor(props){
         super(props)
         this.state = {
-            image: this.props.image
+            image: this.props.AppReducer.image,
         }
     }
 
@@ -260,7 +260,7 @@ export default class extends Component{
         const images = [defaultImage1,defaultImage2,defaultImage3,defaultImage4,defaultImage5,defaultImage6]
         const img = this.state.image ? this.state.image : images[(Math.floor(Math.random() * images.length))]
         const preview = this.state.image ? 
-            <PreviewInputText weight={"bold"} color={"#696969"}>{this.props.imageName}</PreviewInputText>
+            <PreviewInputText weight={"bold"} color={"#696969"}>{this.props.AppReducer.imageName}</PreviewInputText>
             :
             <PreviewInputText weight={"normal"} color={"#cdcdcd"}>未選択</PreviewInputText>
         return(

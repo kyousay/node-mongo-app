@@ -7,7 +7,8 @@ import bg from '../styles/img/background.jpeg'
 import Top from './Top/'
 import Form from './Form/'
 import Login from '../containers/Login/'
-import MyAcount from './MyAcount/'
+import MyAcount from '../containers/MyAcount/'
+import UserForm from '../containers/MyAcount/UserForm'
 import { css } from '@emotion/core'
 import ClipLoader from 'react-spinners/ClipLoader'
 import { calculate } from '../styles/common'
@@ -63,7 +64,8 @@ export default class extends Component{
                         <Route exact path="/" component={Top} />
                         <Route path="/form" component={Form}/>
                         <Route path="/login" component={Login} />
-                        <Route path="/mypage" component={MyAcount} />
+                        <Route exact path="/mypage" component={MyAcount} />
+                        <Route path="/mypage/change" component={UserForm} />
                         <Route component={Top} />
                     </Switch>
                 </Wrapper>

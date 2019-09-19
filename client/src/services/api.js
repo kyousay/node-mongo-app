@@ -31,7 +31,6 @@ export const createAcountFactory = (connectConfig = {}) => {
     const instance = axios.create(config)
 
     const createAcount = async (data) => {
-        console.log(data)
         try{
             const response = await instance.post('/createAcount',data)
 
@@ -55,7 +54,6 @@ export const loginAcountFactory = (connectConfig = {}) => {
     const instance = axios.create(config)
 
     const loginAcount = async (data) => {
-        console.log(data)
         try{
             const response = await instance.post('/login',data)
 
@@ -79,7 +77,6 @@ export const upLoadThumbnailFactory = (connectConfig = {}) => {
     const instance = axios.create(config)
 
     const upLoadThumbnail = async (data) => {
-        console.log(data)
         try{
             const response = await instance.post('/mypage',data)
 
@@ -94,4 +91,27 @@ export const upLoadThumbnailFactory = (connectConfig = {}) => {
         }
     }
     return upLoadThumbnail
+}
+
+export const updateDBFactory = (connectConfig = {}) => {
+    const config = {
+        ...connectConfig,
+    }
+    const instance = axios.create(config)
+
+    const updateDB = async (data) => {
+        try{
+            const response = await instance.post('/mypage/change',data)
+
+            if(response.status !== 200) {
+                throw new Error ('Server Error')
+            }
+            const result = response
+
+            return result
+        }catch(err) {
+            throw err
+        }
+    }
+    return updateDB
 } 

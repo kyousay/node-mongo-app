@@ -1,44 +1,80 @@
 import {  call, fork, put, takeLatest } from 'redux-saga/effects'
 import * as Action from './actions/'
-import { push } from 'connected-react-router'
-import { postDataFactory,createAcountFactory,loginAcountFactory,upLoadThumbnailFactory } from './services/api'
+import { postDataFactory,createAcountFactory,
+    loginAcountFactory,upLoadThumbnailFactory,
+    updateDBFactory } from './services/api'
 
 function* postData(action) {
     const api = postDataFactory()
-    const data = yield call(api,action.payload)
-    yield alert(data.data)
-    yield put(Action.changeLoading(false))
-    yield put(Action.resetStore())
-    yield put(push('/form/complete'))
+    try{
+        const data = yield call(api,action.payload)
+        yield alert(data.data)
+        yield put(Action.changeLoading(false))
+        yield put(Action.changeComplete(true))
+        yield put(Action.resetStore())
+    } catch(error) {
+        alert(error)
+    }
 }
 
 function* createAcount(action) {
     const api = createAcountFactory()
     yield put(Action.changeLoading(true))
-    const data = yield call(api,action.payload)
-    yield put(Action.changeLoading(false))
-    yield alert(data.data)
+    try{
+        const data = yield call(api,action.payload)
+        yield put(Action.changeLoading(false))
+        yield alert(data.data)
+    } catch(error) {
+        alert(error)
+        yield put(Action.changeLoading(false))
+    }
 }
 
 function* loginAcount(action) {
     const api = loginAcountFactory()
     yield put(Action.changeLoading(true))
-    const data = yield call(api,action.payload)
-    yield put(Action.changeLoading(false))
-    yield put(Action.setLoginInfo({
-            ...data.data.user
-        }))
-    yield alert(data.data.text)
-    yield put(push('/mypage'))
-    // sessionStorage.nogi = ('true')
+    try{
+        const data = yield call(api,action.payload)
+        yield alert(data.data.text)
+        if(data.data.statusCode){
+            yield put(Action.setLoginInfo({
+                ...data.data.user
+            }))
+            yield put(Action.userLogin(true))
+            yield put(Action.changeLoading(false))
+        }else{
+            yield put(Action.changeLoading(false))
+        }
+    } catch(error) {
+        alert(error)
+        yield put(Action.changeLoading(false))
+    }
 }
 
 function* upLoadThumbnail(action) {
     const api = upLoadThumbnailFactory()
     yield put(Action.changeLoading(true))
-    const data = yield call(api,action.payload)
-    yield put(Action.changeLoading(false))
-    yield put(Action.setThumbnail(data.data.thumbnail))
+    try{
+        const data = yield call(api,action.payload)
+        yield put(Action.changeLoading(false))
+        yield put(Action.setThumbnail(data.data.thumbnail))
+    } catch(error) {
+        alert(error)
+        yield put(Action.changeLoading(false))
+    }
+}
+
+function* updateDB(action) {
+    const api = updateDBFactory()
+    yield put(Action.changeLoading(true))
+    try{
+        const data = yield call(api,action.payload)
+        yield put(Action.setUserDate(data.data))
+        yield put(Action.changeLoading(false))
+    } catch (error) {
+        alert(error)
+        yield put(Action.changeLoading(false))
+    }
 }
 
 function* waitForAction() {
@@ -46,6 +82,7 @@ function* waitForAction() {
     yield takeLatest('CREATE_ACOUNT',createAcount)
     yield takeLatest('LOGIN_ACOUNT',loginAcount)
     yield takeLatest('UPLOAD_THUMBNAIL',upLoadThumbnail)
+    yield takeLatest('UPDATE_DB',updateDB)
 }
 
 export default function* rootSaga() {

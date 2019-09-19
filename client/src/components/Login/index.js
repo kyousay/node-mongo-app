@@ -18,13 +18,13 @@ const Wrapper = styled.div`
 
 const Login = (props) => {
     useEffect(() => {
-        if(sessionStorage.getItem('nogi')){
+        if(props.state.AppReducer.user.login){
             props.history.push('/mypage')
         }
     })
     return(
         <Wrapper>
-            <Header />
+            <Header text={"TopPage"} link={"/"}/>
             <LoginForm />
         </Wrapper>
     )

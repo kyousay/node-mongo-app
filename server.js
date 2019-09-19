@@ -20,10 +20,12 @@ mongoose.connect(dbUrl, dbErr => {
 
     app.post('/upload',(request,response) => {
         const Data = new Datas()
-        const {first,last,mail} = request.body.form
-        Data.image = request.body.image
+        const {first,last,mail} = request.body.data.form
+        Data.id = request.body.data.id
+        Data.image = request.body.data.image
         Data.name = last + "" + first
         Data.mail = mail
+        Data.date = request.body.data.date
         Data.save(err => {
             if(err) console.log(err)
             response.send("正常にアップロードされました。")
@@ -64,7 +66,7 @@ mongoose.connect(dbUrl, dbErr => {
         
             // 新規登録
             if (result.length == 0){
-                response.send("アカウントがありません。登録してください。")
+                response.send({text:"アカウントがありません。登録してください。"})
             }
             // usernameがDBに存在した場合
             else{
@@ -72,6 +74,7 @@ mongoose.connect(dbUrl, dbErr => {
                 response.send(
                     {
                         text: "ログインに成功しました。",
+                        statusCode: true,
                         user: {
                             id:result[0]._id,
                             loginName: result[0].loginName,
@@ -103,6 +106,25 @@ mongoose.connect(dbUrl, dbErr => {
                 })
             }
             })
+    })
+
+    app.post('/mypage/change',(request,response) => {
+        const _id = request.body.id
+        User.findByIdAndUpdate(_id, { 
+            last: request.body.last,
+            first: request.body.first,
+            kana_last: request.body.kana_last,
+            kana_first: request.body.kana_first,
+            mail : request.body.mail,
+         }, err => {
+            if (err) response.status(500).send()
+            else {  // updateに成功した場合、すべてのデータをあらためてfindしてクライアントに送る
+                User.find({_id:_id}, (findErr, characterArray) => {
+                    if (findErr) response.status(500).send()
+                    else response.status(200).send(characterArray[0])
+                })
+            }
+        })
     })
 
     app.listen(port,err => {

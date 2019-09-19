@@ -5,6 +5,7 @@ const uploadDataSchema = new mongoose.Schema({
     image: String,
     name: String,
     mail : String,
+    date : String 
 })
 
 const Data = mongoose.model('Data',uploadDataSchema)

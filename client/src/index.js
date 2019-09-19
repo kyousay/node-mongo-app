@@ -1,8 +1,10 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import App from './containers/App'
-import { createBrowserHistory } from 'history'
-import { connectRouter,routerMiddleware, ConnectedRouter } from 'connected-react-router'
+import { BrowserRouter as Router } from 'react-router-dom'
+import { persistReducer, persistStore } from 'redux-persist'
+import storage from 'redux-persist/es/storage'
+import { PersistGate } from 'redux-persist/integration/react'
 import { createStore,applyMiddleware, combineReducers } from 'redux'
 import createSagaMiddleware from 'redux-saga'
 import rootSaga from './saga'
@@ -10,26 +12,34 @@ import { Provider } from 'react-redux'
 import logger from 'redux-logger'
 import AppReducer from './reducers/'
 
-const history = createBrowserHistory()
-
+const persistConfig = {
+    key: 'root', 
+    storage, 
+    whitelist: ['AppReducer'] 
+  }
 
 const rootReducer = combineReducers({
     AppReducer,
-    router: connectRouter(history)
 })
+
+const persistedReducer = persistReducer(persistConfig, rootReducer)
 
 const sagaMiddleWare = createSagaMiddleware()
 
 const store = createStore(
-    rootReducer,
-    applyMiddleware(logger,sagaMiddleWare,routerMiddleware(history))
+    persistedReducer,
+    applyMiddleware(logger,sagaMiddleWare)
 )
+
+const persistor = persistStore(store)
 
 ReactDOM.render(
     <Provider store={store}>
-        <ConnectedRouter history={history}>
-            <App />
-        </ConnectedRouter>
+        <PersistGate persistor={persistor}>
+            <Router>
+                <App />
+            </Router>
+        </PersistGate>
     </Provider>,
     document.getElementById('root')
 )

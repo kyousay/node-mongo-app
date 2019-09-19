@@ -44,25 +44,26 @@ const UserName = styled.p`
 const ImageForm = (props) => {
     const { loginName } = props.AppReducer.user
     const [img,setImg] = useState()
-    const [Flg,setFlg] = useState(true)
 
-    const convertImage = (files) => {
-        if(Flg) {
-            const file = files[0]
-            const reader = new FileReader()
-            reader.addEventListener('load',() => {
-                setImg(reader.result)
-                props.upLoadThumbnail({
-                    thumbnail:reader.result,
-                    id: props.AppReducer.user.id
-                })
-                document.getElementById('imageFile').file = ""
+    const convertImage = (file) => {
+        const reader = new FileReader()
+        reader.addEventListener('load',() => {
+            setImg(reader.result)
+            props.upLoadThumbnail({
+                thumbnail:reader.result,
+                id: props.AppReducer.user.id
             })
-            reader.readAsDataURL(file)
-        }else{
-
-        }
+            document.getElementById('imageFile').file = ""
+        })
+        reader.readAsDataURL(file)
     }
+
+    const setImage = (e) => {
+        const files = e.target.files
+        if(!files.length) return false
+        convertImage(files[0])
+    }
+
     const thumbnail = props.AppReducer.user.thumbnail ? props.AppReducer.user.thumbnail : dummy
     const text = img ? "変更を決定" : "写真を選択"
     return(
@@ -71,7 +72,7 @@ const ImageForm = (props) => {
                 <ImageWrapper>
                     <Image src= {thumbnail} />
                 </ImageWrapper>
-                <input id="imageFile" type="file" accept="image/png,image/jpeg" hidden onChange={(e) => convertImage(e.target.files)}/>
+                <input id="imageFile" type="file" accept="image/png,image/jpeg" hidden onChange={(e) => setImage(e)}/>
                 <ImageInputLabel htmlFor="imageFile">{text}</ImageInputLabel>
             </ImageBox>
             <UserName>

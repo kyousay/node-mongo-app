@@ -24,9 +24,11 @@ export const resetStore = () => ({
     type: 'RESET_STORE',
 })
 
-export const postData = (props) => ({
+export const postData = (data) => ({
     type: 'POST_DATA',
-    payload: props
+    payload: {
+        data
+    }
 })
 
 export const postUpload = (boolean) => ({
@@ -67,4 +69,35 @@ export const setThumbnail = (thumbnail) => ({
     payload: {
         thumbnail
     }
+})
+
+export const userLogin = (data) => ({
+    type: 'USER_LOGIN',
+    payload:{
+        login:data
+    }
+})
+
+export const updateDB = (data) => ({
+    type: 'UPDATE_DB',
+    payload:{
+        ...data
+    }
+})
+
+export const setUserDate = (data) => ({
+    type: 'SET_USERDATE',
+    payload: {
+        ...data,
+    }
+})
+
+export const changeComplete = (boolean) => ({
+    type: 'CHANGE_COMPLETE',
+    payload: boolean
+})
+
+export const getHistory = (id) => ({
+    type: 'GET_HISTORY',
+    payload: id
 })

@@ -1,6 +1,5 @@
-import React,{Component} from 'react'
-import { Link } from 'react-router-dom'
-import { withRouter } from 'react-router'
+import React,{Component}from 'react'
+import Header from '../../components/common/Header'
 import { FormWrapper } from '../../styles/common'
 import styled from 'styled-components'
 import { mediaMobile } from '../../styles/common'
@@ -79,7 +78,7 @@ const ButtonContainer = styled(FormPartsWrapper)`
     width: 450px;
     margin: 0 auto;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     ${mediaMobile`
         justify-content: unset;
         width: auto;
@@ -104,89 +103,48 @@ const Button = styled.button`
     `}
 `
 
-class TextForm extends Component {
+const Wrapper = styled.div`
+    width: 960px;
+    
+    margin: 0 auto;
+    background-color: rgba(255,255,255,0.9);
+    ${mediaMobile`
+        width: auto;
+        padding: ${calculate(10,320)}vw
+    `}
+`
+
+const Content = styled.div`
+    padding: 50px 20px;
+`
+
+class UserForm extends Component {
     constructor(props){
         super(props)
-        this.state = {...this.props.state.form}
+        this.state = {...this.props.state.AppReducer.user}
     }
-    componentDidMount() {
-        if(!this.props.state.image){
-            alert("申し訳ございませんが、写真選択からやり直してください。")
-            this.props.history.push('/form/receipt')
-        }
-        if(this.props.state.user.login){
-            const { last, first, kana_last, kana_first, mail } = this.props.state.user
-            this.setState({
-                last,
-                first,
-                kana_last,
-                kana_first,
-                mail,
-                confirm: mail
-            })
-        }
+
+    sendInfo = () => {
+        this.props.updateDB(this.state)
     }
+
     setValue = (id,value) => {
         this.setState({[id]:value})
     }
-
-    validation = () => {
-        let { mail } = this.state
-        const emptyNote = this.emptyNote(this.state)
-        const checkAddress = this.checkAddress('mail',mail)
-        const confirmAddress = this.confirmAddress()
-        if(emptyNote && checkAddress && confirmAddress){
-            this.props.inputData(this.state)
-            this.props.history.push('/form/confirm')
-        }
-    }
-    emptyNote = (states) => {
-        let invalidNote = document.getElementsByClassName('js-validation')
-        let result = true
-        Object.values(states).forEach((state,index) => {
-            if(!state){
-                invalidNote[index].style.display = "block"
-                document.getElementsByClassName('js-invalidText')[index].textContent = "は必須項目です"
-                result = false
-            }else{
-                invalidNote[index].style.display = "none"
-            }
-        })
-        return result
-    }
-    confirmAddress = () => {
-        let {confirm, mail} = this.state
-        let result = true
-        if(mail !== confirm || confirm === "") {
-            document.getElementById('confirm').parentNode.style.display = "block"
-            document.getElementById('confirm').textContent = "はメールアドレスと一致しません。ご確認上、もう一度入力しなおしてください。"
-            result = false
-        }else{
-            document.getElementById('confirm').parentNode.style.display = "none"
-        }
-        return result
-    }
-    checkAddress = (key,text) => {
-        let result = true;
-        let regexp = /^[A-Za-z0-9]{1}[A-Za-z0-9_.-]*@{1}[A-Za-z0-9_.-]{1,}\.[A-Za-z0-9]{1,}$/
-        if(!regexp.test(text)) {
-            document.getElementById(key).parentNode.style.display = "block"
-            document.getElementById(key).textContent = "は正しいメールアドレスではありません。ご確認の上、もう一度入力しなおしてください。"
-            result = false
-        }else{
-            document.getElementById(key).parentNode.style.display = "none" 
-        }
-        return result
-    }
+    
     render(){
         return(
-            <FormWrapper padding={40}>
-                <FormName text={"氏名(姓・名)"} note={{name1:"姓",name2:"名"}} margin_value={"35px"} type={{id1:"last",id2:"first"}} {...this.state} setValue={this.setValue}/>
-                <FormName text={"フリガナ(セイ・メイ)"} note={{name1:"セイ",name2:"メイ"}} margin_value={"20px"} type={{id1:"kana_last",id2:"kana_first"}} {...this.state} setValue={this.setValue}/>
-                <FormMail text={"メールアドレス"} type={"mail"} {...this.state} setValue={this.setValue}/>
-                <FormMail text={"メールアドレス(確認用)"} type={"confirm"} {...this.state} setValue={this.setValue}/>
-                <FormButton {...this.props} state={this.state} validation={this.validation}/>
-            </FormWrapper>
+            <Wrapper>
+                <Header text={"MyPage"} link={"/mypage"} />
+                <Content>
+                    <FormWrapper padding={40}>
+                        <FormName text={"氏名(姓・名)"} note={{name1:"姓",name2:"名"}} margin_value={"35px"} type={{id1:"last",id2:"first"}} {...this.state} setValue={this.setValue}/>
+                        <FormName text={"フリガナ(セイ・メイ)"} note={{name1:"セイ",name2:"メイ"}} margin_value={"20px"} type={{id1:"kana_last",id2:"kana_first"}} {...this.state} setValue={this.setValue}/>
+                        <FormMail text={"メールアドレス"} type={"mail"} {...this.state} setValue={this.setValue}/>
+                        <FormButton {...this.props} state={this.state} sendInfo={this.sendInfo}/>
+                    </FormWrapper>
+                </Content>
+            </Wrapper>
         )
     }
 }
@@ -233,10 +191,9 @@ const FormMail = (props) => {
 const FormButton = (props) => {
     return(
         <ButtonContainer styled={{padding: "40px 0"}}>
-            <Link to="/form/receipt"><Button styled={{backgroundCol: "#ff4500"}}>レシート撮影画面へ</Button></Link>
-                <Button styled={{backgroundCol: "#9370db"}} onClick={() => props.validation()}>確認画面へ</Button>
+            <Button styled={{backgroundCol: "#ff4500"}} onClick={() => props.sendInfo()}>情報を更新する</Button>
         </ButtonContainer>
     )
 }
 
-export default withRouter(TextForm)
+export default UserForm

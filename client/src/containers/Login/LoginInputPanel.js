@@ -1,6 +1,6 @@
 import loginInputPanel from '../../components/Login/LoginInputPanel'
 import { connect } from 'react-redux'
-import { createAcount,loginAcount } from '../../actions/'
+import { createAcount,loginAcount,userLogin } from '../../actions/'
 
 const mapStateToProps = (state) => {
     return{
@@ -15,7 +15,7 @@ const mapDispatchToProps = (dispatch) => {
         },
         loginAcount: (data) => {
             dispatch(loginAcount(data))
-        }
+        },
     }
 }
 

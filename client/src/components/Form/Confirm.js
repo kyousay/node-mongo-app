@@ -1,9 +1,7 @@
-import React,{Component} from 'react'
+import React,{Component,useEffect} from 'react'
 import { Link } from 'react-router-dom'
-import { withRouter } from 'react-router'
+import { withRouter, Redirect } from 'react-router'
 import styled from 'styled-components'
-import { css } from '@emotion/core'
-import ClipLoader from 'react-spinners/ClipLoader'
 import { mediaMobile } from '../../styles/common'
 import { calculate } from '../../styles/common'
 
@@ -127,26 +125,6 @@ const InputedInfomation = styled.p`
     `}
 `
 
-const override = css`
-    position: absolute;
-    top: 45%;
-    left: 45%;
-    bordere-color: red;
-    ${mediaMobile`
-        width: ${calculate(50,320)}vw;
-        height: ${calculate(50,320)}vw;
-    `}
-`
-
-const LoadingWrapper = styled.div`
-    position: fixed;
-    left: 0;
-    right: 0;
-    top: 0;
-    bottom: 0;
-    background-color: rgba(255,255,255,0.5);
-`
-
 
 class Confirm extends Component {
     componentDidMount() {
@@ -158,19 +136,34 @@ class Confirm extends Component {
     sendInformation = (e) => {
         e.preventDefault()
         this.props.changeLoading(true)
-        const formData = {
-            ...this.props.state
-        }
-        this.props.postData(formData)
+        const time = new Date()
+        const Year = time.getFullYear()
+        const Month = time.getMonth()+1
+        const date = time.getDate()
+        const Hour = time.getHours()
+        const Min = time.getMinutes()
+        const data = Object.assign({
+            id: this.props.state.user.id,
+            image: this.props.state.image,
+            form: {
+                ...this.props.state.form
+            },
+            date: Year + "年" + Month + "月" + date + "日" + Hour + ":" + Min 
+        })
+        this.props.postData(data)
     }
     
 
     render() {
         const {state} = this.props
+        if(this.props.state.complete){
+            this.props.changeComplete(false)
+            return <Redirect to="/form/complete"/>
+        }
         return(
             <>  
                 <NoteText styled={{margin:"40px"}}>入力内容をご確認ください</NoteText>
-                <Form styled={{padding: "40px 0"}} id="form" action="/upload" method="post" onSubmit={(e) => {this.sendInformation(e)}}>
+                <Form styled={{padding: "40px 0"}} id="form" onSubmit={(e) => {this.sendInformation(e)}}>
                     <input type="hidden" name="image" value={state.image} />
                     <input type="hidden" name="FullName" value={state.form.last + state.form.first}/>
                     <input type="hidden" name="kana_FullName" value={state.form.kana_last + state.form.kana_first} />

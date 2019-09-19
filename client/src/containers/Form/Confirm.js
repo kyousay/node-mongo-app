@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import { changeLoading,resetStore,postData } from '../../actions'
+import { changeLoading,resetStore,postData,changeComplete } from '../../actions'
 import Confirm from '../../components/Form/Confirm'
 
 const mapStateToProps = (state) => {
@@ -21,6 +21,9 @@ const mapDispatchToProps = (dispatch) => {
         postData: (e) => {
             dispatch(postData(e))
         },
+        changeComplete: (e) => {
+            dispatch(changeComplete(e))
+        }
     }
 }
 

@@ -18,9 +18,12 @@ const initialState = {
         kana_last: "",
         kana_first: "",
         mail: "",
+        login: false,
+        applyHistory: ""
     },
     loading: false,
     postUpload: false,
+    complete: false,
 }
 
 const AppReducer = ( state = initialState,action ) => {
@@ -61,6 +64,24 @@ const AppReducer = ( state = initialState,action ) => {
             return{
                 ...state,
                 user: newData,
+            }
+        case 'USER_LOGIN' : 
+            const log = Object.assign(state.user,action.payload)
+            return{
+                ...state,
+                user: log
+            }
+        case 'SET_USERDATE' :
+            delete action.payload._id
+            const Update = Object.assign(state.user,action.payload)
+            return{
+                ...state,
+                user: Update
+            }
+        case 'CHANGE_COMPLETE' :
+            return{
+                ...state,
+                complete: action.payload
             }
         default :
             return state

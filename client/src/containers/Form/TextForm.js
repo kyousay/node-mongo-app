@@ -5,7 +5,7 @@ import { inputData } from '../../actions'
 const mapStateToProps = (state) => {
     return{
         state: {
-            ...state.AppReducer.form
+            ...state.AppReducer
         },
         image: state.AppReducer.image
     }
