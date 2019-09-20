@@ -114,4 +114,50 @@ export const updateDBFactory = (connectConfig = {}) => {
         }
     }
     return updateDB
+}
+
+export const getHistoryFactory = (connectConfig = {}) => {
+    const config = {
+        ...connectConfig,
+    }
+    const instance = axios.create(config)
+
+    const getHistory = async (data) => {
+        try{
+            const response = await instance.post('/mypage/history',data)
+
+            if(response.status !== 200) {
+                throw new Error ('Server Error')
+            }
+            const result = response
+
+            return result
+        }catch(err) {
+            throw err
+        }
+    }
+    return getHistory
+}
+
+export const deleteHistoryFactory = (connectConfig = {}) => {
+    const config = {
+        ...connectConfig,
+    }
+    const instance = axios.create(config)
+
+    const deleteHistory = async (data) => {
+        try{
+            const response = await instance.post('/mypage/history/delete',data)
+
+            if(response.status !== 200) {
+                throw new Error ('Server Error')
+            }
+            const result = response
+
+            return result
+        }catch(err) {
+            throw err
+        }
+    }
+    return deleteHistory
 } 

@@ -105,8 +105,30 @@ mongoose.connect(dbUrl, dbErr => {
                     else response.status(200).send({thumbnail:characterArray[0].thumbnail})
                 })
             }
-            })
+        })
     })
+
+    app.post('/mypage/history',(request,response) => {
+        Datas.find({ id: request.body.id }, (findErr, dataArray) => {
+            if (findErr) response.status(500).send()
+            else response.status(200).send(dataArray)
+        })
+    })
+
+    app.post('/mypage/history/delete',(request,response) => {
+        const { _id } = request.body
+        const { id } = request.body
+        Datas.findByIdAndRemove({_id}, err => {
+            if (err) response.status(500).send()
+            else {
+                Datas.find({id}, (findErr, dataArray) => {
+                    if (findErr) response.status(500).send()
+                    else response.status(200).send(dataArray)
+                })
+            }
+        })
+    })
+
 
     app.post('/mypage/change',(request,response) => {
         const _id = request.body.id

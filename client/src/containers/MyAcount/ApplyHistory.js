@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
 import ApplyHistory from '../../components/MyAcount/ApplyHistory'
-import { getHistory } from '../../actions/'
+import { getHistory,deleteHistory} from '../../actions/'
 
 const mapStateToProps = (state) => {
     return{
@@ -8,10 +8,13 @@ const mapStateToProps = (state) => {
     }
 }
 
-mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = (dispatch) => {
     return{
         getHistory:(id) => {
             dispatch(getHistory(id))
+        },
+        deleteHistory: (_id) => {
+            dispatch(deleteHistory(_id))
         }
     }
 }

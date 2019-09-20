@@ -101,3 +101,13 @@ export const getHistory = (id) => ({
     type: 'GET_HISTORY',
     payload: id
 })
+
+export const setHistory = (data) => ({
+    type: 'SET_HISTORY',
+    payload: data
+})
+
+export const deleteHistory = (_id) => ({
+    type: 'DELETE_HISTORY',
+    payload: _id
+})

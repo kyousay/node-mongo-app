@@ -83,6 +83,12 @@ const AppReducer = ( state = initialState,action ) => {
                 ...state,
                 complete: action.payload
             }
+        case 'SET_HISTORY' :
+            const object = Object.assign(state.user,{applyHistory: action.payload})
+            return{
+                ...state,
+                user: object
+            }
         default :
             return state
     }

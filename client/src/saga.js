@@ -2,7 +2,7 @@ import {  call, fork, put, takeLatest } from 'redux-saga/effects'
 import * as Action from './actions/'
 import { postDataFactory,createAcountFactory,
     loginAcountFactory,upLoadThumbnailFactory,
-    updateDBFactory } from './services/api'
+    updateDBFactory, getHistoryFactory, deleteHistoryFactory } from './services/api'
 
 function* postData(action) {
     const api = postDataFactory()
@@ -77,12 +77,40 @@ function* updateDB(action) {
     }
 }
 
+function* getHistory(action) {
+    const api = getHistoryFactory()
+    yield put(Action.changeLoading(true))
+    try {
+        const data = yield call(api,action.payload)
+        yield put(Action.setHistory(data.data))
+        yield put(Action.changeLoading(false))
+    } catch (error) {
+        alert(error)
+        yield put(Action.changeLoading(false))
+    }
+}
+
+function* deleteHistory(action) {
+    const api = deleteHistoryFactory()
+    yield put(Action.changeLoading(true))
+    try{
+        const data = yield call(api,action.payload)
+        yield put(Action.setHistory(data.data))
+        yield put(Action.changeLoading(false))
+    } catch (error) {
+        alert(error)
+        yield put(Action.changeLoading(false))
+    }
+}
+
 function* waitForAction() {
     yield takeLatest('POST_DATA',postData)
     yield takeLatest('CREATE_ACOUNT',createAcount)
     yield takeLatest('LOGIN_ACOUNT',loginAcount)
     yield takeLatest('UPLOAD_THUMBNAIL',upLoadThumbnail)
     yield takeLatest('UPDATE_DB',updateDB)
+    yield takeLatest('GET_HISTORY',getHistory)
+    yield takeLatest('DELETE_HISTORY',deleteHistory)
 }
 
 export default function* rootSaga() {
