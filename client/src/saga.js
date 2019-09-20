@@ -14,6 +14,7 @@ function* postData(action) {
         yield put(Action.resetStore())
     } catch(error) {
         alert(error)
+        yield put(Action.changeLoading(false))
     }
 }
 

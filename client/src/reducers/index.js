@@ -19,7 +19,7 @@ const initialState = {
         kana_first: "",
         mail: "",
         login: false,
-        applyHistory: ""
+        applyHistory: []
     },
     loading: false,
     postUpload: false,
