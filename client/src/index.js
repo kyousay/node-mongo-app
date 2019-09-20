@@ -14,7 +14,8 @@ import AppReducer from './reducers/'
 
 const persistConfig = {
     key: 'root', 
-    storage,  
+    storage,
+    blacklist: ["AppReducer"]  
   }
 
 const rootReducer = combineReducers({
