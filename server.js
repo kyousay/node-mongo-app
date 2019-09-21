@@ -3,7 +3,6 @@ import mongoose from 'mongoose'
 import bodyParser from 'body-parser'
 import path from 'path'
 import Datas from './uploadData'
-// import Member from './members'
 import User from './user'
 
 const app = express()

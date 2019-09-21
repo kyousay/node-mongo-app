@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import App from './containers/App'
-import { BrowserRouter as Router } from 'react-router-dom'
+import { HashRouter as Router } from 'react-router-dom'
 import { persistReducer, persistStore } from 'redux-persist'
 import storage from 'redux-persist/es/storage'
 import { PersistGate } from 'redux-persist/integration/react'
