@@ -107,15 +107,15 @@ const Button = styled.button`
 class TextForm extends Component {
     constructor(props){
         super(props)
-        this.state = {...this.props.state.form}
+        this.state = {...this.props.app.form}
     }
     componentDidMount() {
-        if(!this.props.state.image){
+        if(!this.props.app.image){
             alert("申し訳ございませんが、写真選択からやり直してください。")
             this.props.history.push('/form/receipt')
         }
-        if(this.props.state.user.login){
-            const { last, first, kana_last, kana_first, mail } = this.props.state.user
+        if(this.props.user.login){
+            const { last, first, kana_last, kana_first, mail } = this.props.user
             this.setState({
                 last,
                 first,

@@ -42,34 +42,35 @@ const LoadingWrapper = styled.div`
     right: 0;
     top: 0;
     bottom: 0;
+    z-inex: 1000;
     background-color: rgba(255,255,255,0.5);
 `
 
 
 
-export default class extends Component{
-    render(){
-        const {loading} = this.props.state.AppReducer
-        const loadingElement = loading ? 
-            <LoadingWrapper>
-                <ClipLoader css={override} sizeUnit={"px"} size={200} color={"#9370db"} loading={loading} />
-            </LoadingWrapper>
-        : null
-        return(
-            <>
-                <BaseStyles />
-                {loadingElement}
-                <Wrapper>
-                    <Switch>
-                        <Route exact path="/" component={Top} />
-                        <Route path="/form" component={Form}/>
-                        <Route path="/login" component={Login} />
-                        <Route exact path="/mypage" component={MyAcount} />
-                        <Route path="/mypage/change" component={UserForm} />
-                        <Route component={Top} />
-                    </Switch>
-                </Wrapper>
-            </>
-        )
-    }
+const App = props => {
+    const {loading} = props.app
+    const loadingElement = loading ? 
+        <LoadingWrapper>
+            <ClipLoader css={override} sizeUnit={"px"} size={200} color={"#9370db"} loading={loading} />
+        </LoadingWrapper>
+    : null
+    return(
+        <>
+            <BaseStyles />
+            {loadingElement}
+            <Wrapper>
+                <Switch>
+                    <Route exact path="/" component={Top} />
+                    <Route path="/form" component={Form}/>
+                    <Route path="/login" component={Login} />
+                    <Route exact path="/mypage" component={MyAcount} />
+                    <Route path="/mypage/change" component={UserForm} />
+                    <Route component={Top} />
+                </Switch>
+            </Wrapper>
+        </>
+    )
 }
+
+export default App

@@ -4,7 +4,7 @@ import UserForm from '../../components/MyAcount/UserForm'
 
 const mapStateToProps = state => {
     return{
-        state
+        ...state
     }
 }
 

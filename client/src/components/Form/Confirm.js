@@ -128,7 +128,7 @@ const InputedInfomation = styled.p`
 
 class Confirm extends Component {
     componentDidMount() {
-        if(this.props.state.image === ""){
+        if(this.props.app.image === ""){
             alert("申し訳ございませんが、写真選択からやり直してください。")
             this.props.history.push('/form/receipt')
         }
@@ -143,10 +143,10 @@ class Confirm extends Component {
         const Hour = time.getHours()
         const Min = time.getMinutes()
         const data = Object.assign({
-            id: this.props.state.user.id,
-            image: this.props.state.image,
+            id: this.props.user.id,
+            image: this.props.app.image,
             form: {
-                ...this.props.state.form
+                ...this.props.app.form
             },
             date: Year + "年" + Month + "月" + date + "日" + Hour + ":" + Min 
         })
@@ -155,8 +155,8 @@ class Confirm extends Component {
     
 
     render() {
-        const {state} = this.props
-        if(this.props.state.complete){
+        const { app } = this.props
+        if(this.props.app.complete){
             this.props.changeComplete(false)
             return <Redirect to="/form/complete"/>
         }
@@ -164,16 +164,16 @@ class Confirm extends Component {
             <>  
                 <NoteText styled={{margin:"40px"}}>入力内容をご確認ください</NoteText>
                 <Form styled={{padding: "40px 0"}} id="form" onSubmit={(e) => {this.sendInformation(e)}}>
-                    <input type="hidden" name="image" value={state.image} />
-                    <input type="hidden" name="FullName" value={state.form.last + state.form.first}/>
-                    <input type="hidden" name="kana_FullName" value={state.form.kana_last + state.form.kana_first} />
-                    <input type="hidden" name="mail" value={state.form.mail}/>
+                    <input type="hidden" name="image" value={app.image} />
+                    <input type="hidden" name="FullName" value={app.form.last + app.form.first}/>
+                    <input type="hidden" name="kana_FullName" value={app.form.kana_last + app.form.kana_first} />
+                    <input type="hidden" name="mail" value={app.form.mail}/>
                     <ImageBox>
-                        <Image src={state.image} alt="receiptImage" />
+                        <Image src={app.image} alt="receiptImage" />
                     </ImageBox>
-                    <InputedText {...this.props} text={{title:"氏名",info: state.form.last + " " + state.form.first}} />
-                    <InputedText {...this.props} text={{title:"フリガナ",info: state.form.kana_last + " " + state.form.kana_first}} />
-                    <InputedText {...this.props} text={{title:"メールアドレス",info: state.form.mail}} />
+                    <InputedText {...this.props} text={{title:"氏名",info: app.form.last + " " + app.form.first}} />
+                    <InputedText {...this.props} text={{title:"フリガナ",info: app.form.kana_last + " " + app.form.kana_first}} />
+                    <InputedText {...this.props} text={{title:"メールアドレス",info: app.form.mail}} />
                     <ButtonContainer styled={{padding: "40px 0"}}>
                         <Link to="/form/text"><Button styled={{backgroundCol: "#ff4500"}}>個人情報入力へ</Button></Link>
                         <Button type="send" styled={{backgroundCol: "#9370db"}}>応募する</Button>

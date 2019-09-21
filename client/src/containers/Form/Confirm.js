@@ -4,9 +4,7 @@ import Confirm from '../../components/Form/Confirm'
 
 const mapStateToProps = (state) => {
     return{
-        state: {
-            ...state.AppReducer
-        }
+            ...state
     }
 }
 

@@ -4,7 +4,7 @@ import { mediaMobile } from '../../styles/common'
 import { calculate } from '../../styles/common'
 import { withRouter } from 'react-router'
 import LoginForm from './LoginForm'
-import Header from '../../containers/common/Header'
+import Header from '../../components/common/Header'
 
 const Wrapper = styled.div`
     width: 960px;
@@ -18,7 +18,7 @@ const Wrapper = styled.div`
 
 const Login = (props) => {
     useEffect(() => {
-        if(props.state.AppReducer.user.login){
+        if(props.user.login){
             props.history.push('/mypage')
         }
     })

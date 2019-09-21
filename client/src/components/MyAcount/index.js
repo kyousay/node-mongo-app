@@ -5,7 +5,7 @@ import { calculate } from '../../styles/common'
 import ImageForm from '../../containers/MyAcount/ImageForm'
 import LoginData from './LoginData'
 import ApplyHistory from '../../containers/MyAcount/ApplyHistory'
-import Header from '../../containers/common/Header'
+import Header from '../../components/common/Header'
 
 const Wrapper = styled.div`
     width: 960px;
@@ -24,7 +24,7 @@ const Content = styled.div`
 
 const MyAcount = (props) => {
     useEffect(() => {
-        if(!props.state.AppReducer.user.login){
+        if(!props.user.login){
             props.history.push('/login')
         }
         

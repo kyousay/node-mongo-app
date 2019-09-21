@@ -3,7 +3,7 @@ import index from '../../components/MyAcount/'
 
 const mapStateToProps = (state) => {
     return{
-        state
+        ...state
     }
 }
 

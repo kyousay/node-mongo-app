@@ -10,7 +10,7 @@ import Way from './Way'
 import Announce from './Announce'
 import Terms from './Terms'
 import Footer from './Footer'
-import Header from '../../containers/common/Header'
+import Header from '../../components/common/Header'
 
 const Top = styled.div`
     position: relative;

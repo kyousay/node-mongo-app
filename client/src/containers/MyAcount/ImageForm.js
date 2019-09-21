@@ -3,9 +3,9 @@ import { upLoadThumbnail} from '../../actions'
 import ImageForm from '../../components/MyAcount/ImageForm'
 
 const mapStateToProps = (state) => {
-    return(
-        state
-    )
+    return{
+        ...state
+    }
 }
 
 const mapDispatchToProps = (dispatch) => {

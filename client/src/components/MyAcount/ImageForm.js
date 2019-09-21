@@ -42,7 +42,7 @@ const UserName = styled.p`
 `
 
 const ImageForm = (props) => {
-    const { loginName } = props.AppReducer.user
+    const { loginName } = props.user
     const [img,setImg] = useState()
 
     const convertImage = (file) => {
@@ -51,7 +51,7 @@ const ImageForm = (props) => {
             setImg(reader.result)
             props.upLoadThumbnail({
                 thumbnail:reader.result,
-                id: props.AppReducer.user.id
+                id: props.user.id
             })
             document.getElementById('imageFile').file = ""
         })
@@ -64,7 +64,7 @@ const ImageForm = (props) => {
         convertImage(files[0])
     }
 
-    const thumbnail = props.AppReducer.user.thumbnail ? props.AppReducer.user.thumbnail : dummy
+    const thumbnail = props.user.thumbnail ? props.user.thumbnail : dummy
     const text = img ? "変更を決定" : "写真を選択"
     return(
         <>

@@ -1,4 +1,4 @@
-import React,{Component} from 'react'
+import React from 'react'
 import styled from 'styled-components'
 import { mediaMobile } from '../../styles/common'
 import { calculate } from '../../styles/common'
@@ -20,19 +20,19 @@ const FormWrapper = styled.div`
     `}
 `
 
-export default class extends Component {
-    render(){
-        return(
-            <FormWrapper>
-                <Title />
-                <Switch>
-                    <Route exact path="/form/receipt" component={ImageForm} />
-                    <Route exact path="/form/text" component={TextForm} />
-                    <Route exact path="/form/confirm" component={Confirm} />
-                    <Route exact path="/form/complete" component={Complete} />
-                    <Route component={ImageForm}/>
-                </Switch>
-            </FormWrapper>
-        )
-    }
+const Form = () => {
+    return(
+        <FormWrapper>
+            <Title />
+            <Switch>
+                <Route exact path="/form/receipt" component={ImageForm} />
+                <Route exact path="/form/text" component={TextForm} />
+                <Route exact path="/form/confirm" component={Confirm} />
+                <Route exact path="/form/complete" component={Complete} />
+                <Route component={ImageForm}/>
+            </Switch>
+        </FormWrapper>
+    )
 }
+
+export default Form

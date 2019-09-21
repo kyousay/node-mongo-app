@@ -4,7 +4,7 @@ import { getHistory,deleteHistory} from '../../actions/'
 
 const mapStateToProps = (state) => {
     return{
-        ...state.AppReducer
+        ...state
     }
 }
 

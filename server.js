@@ -8,7 +8,6 @@ import User from './user'
 const app = express()
 const port = process.env.PORT || 3001
 const dbUrl = 'mongodb://heroku_11gs2dg8:so3b32tq5cebib5u6b02g5ttio@ds033186.mlab.com:33186/heroku_11gs2dg8'
-// const dbUrl = 'mongodb://127.0.0.1:27017/LP'
 
 
 app.use(express.static(path.join(__dirname, 'client/build')))

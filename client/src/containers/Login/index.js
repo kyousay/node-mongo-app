@@ -4,7 +4,7 @@ import { changeLoading } from '../../actions/'
 
 const mapStateToProps = (state) => {
     return{
-        state
+        ...state
     }
 }
 

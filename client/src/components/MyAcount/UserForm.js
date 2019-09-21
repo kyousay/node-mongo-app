@@ -121,7 +121,7 @@ const Content = styled.div`
 class UserForm extends Component {
     constructor(props){
         super(props)
-        this.state = {...this.props.state.AppReducer.user}
+        this.state = {...this.props.user}
     }
 
     sendInfo = () => {
