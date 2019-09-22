@@ -19,13 +19,13 @@ const TermsThemeBar = styled(ThemeBar)`
     background-color: #ff8c00;
 `
 
-export const SectionTitle = (props) => {
+export const SectionTitle = props => {
     return(
         <ThemeBar>{props.title}</ThemeBar>
     )
 }
 
-export const TermsSectionTitle = (props) => {
+export const TermsSectionTitle = props => {
     return(
         <TermsThemeBar>{props.title}</TermsThemeBar>
     )

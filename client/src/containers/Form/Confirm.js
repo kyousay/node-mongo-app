@@ -2,7 +2,7 @@ import { connect } from 'react-redux'
 import { changeLoading,resetStore,postData,changeComplete } from '../../actions'
 import Confirm from '../../components/Form/Confirm'
 
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
     return{
             ...state
     }
@@ -10,16 +10,16 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return{
-        changeLoading: (loading) => {
+        changeLoading: loading => {
             dispatch(changeLoading(loading))
         },
         resetStore: () => {
             dispatch(resetStore())
         },
-        postData: (e) => {
+        postData: e => {
             dispatch(postData(e))
         },
-        changeComplete: (e) => {
+        changeComplete: e => {
             dispatch(changeComplete(e))
         }
     }

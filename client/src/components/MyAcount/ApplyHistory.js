@@ -1,15 +1,23 @@
 import React, {useEffect} from 'react'
 import styled from 'styled-components'
 import { SectionTitle } from '../Top/SectionTitle'
+import { mediaMobile } from '../../styles/common'
+import { calculate } from '../../styles/common'
 
 const ListWrapper = styled.ul`
     margin: 50px;
     padding: 30px 0;
+    ${mediaMobile`
+        margin: ${calculate(20,960)}vw 0vw;
+        padding: ${calculate(30,960)}vw 0vw;
+    `}
 `
 
 const List = styled.li`
     border: 2px solid #cdcdcd;
     display: flex;
+    word-break: break-word;
+    line-height: 1.5
     &:not(:first-child) {
         border-top: 0;
     }
@@ -21,6 +29,9 @@ const Data = styled.p`
     display: flex;
     align-items: center;
     justify-content: center;
+    ${mediaMobile`
+        font-size: 1vw;
+    `}
     &:not(:first-child) {
         border-left: 2px solid #cdcdcd;
     }
@@ -39,6 +50,9 @@ const DeleteIcon = styled.div`
     cursor: pointer;
     font-size: 2.0rem;
     color: #9370db;
+    ${mediaMobile`
+        font-size: ${calculate(15,320)}vw;
+    `}
     &:hover {
         opacity: 0.7;
     }
@@ -47,7 +61,7 @@ const DeleteIcon = styled.div`
 
 
 
-const ApplyHistory = (props) => {
+const ApplyHistory = props => {
     useEffect(() => {
         props.getHistory({id:props.user.id})
     },[props.applyHistory])
@@ -69,7 +83,7 @@ const ApplyHistory = (props) => {
     )
 }
 
-const ListItem = (props) => {
+const ListItem = props => {
     const deleteHistory = () => {
         props.delete({_id:props.data._id,id:props.data.id})
     }

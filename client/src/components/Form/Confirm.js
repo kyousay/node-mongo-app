@@ -1,4 +1,4 @@
-import React,{Component,useEffect} from 'react'
+import React,{Component} from 'react'
 import { Link } from 'react-router-dom'
 import { withRouter, Redirect } from 'react-router'
 import styled from 'styled-components'
@@ -6,14 +6,14 @@ import { mediaMobile } from '../../styles/common'
 import { calculate } from '../../styles/common'
 
 const Form = styled.form`
-    padding:${(props) => props.styled.padding}
+    padding:${props => props.styled.padding}
     ${mediaMobile`
         padding: ${calculate(20,320)}vw 0 ;
     `}
 `
 
 const NoteText = styled.p`
-    margin-top: ${(props) => props.styled.margin}
+    margin-top: ${props => props.styled.margin}
     font-size: 3.0rem;
     color: #9370db;
     text-align: center;
@@ -26,7 +26,7 @@ const NoteText = styled.p`
 `
 
 const FormPartsWrapper = styled.div`
-    padding: ${(props) => props.styled.padding};
+    padding: ${props => props.styled.padding};
     font-size: 1.5rem;
     text-align: left;
     ${mediaMobile`
@@ -53,7 +53,7 @@ const Button = styled.button`
     width: 200px;
     padding: 20px;
     font-size: 1.5rem;
-    background-color: ${(props) => props.styled.backgroundCol};
+    background-color: ${props => props.styled.backgroundCol};
     color: #fff;
     border-radius: 5px;
     border: none;
@@ -87,9 +87,9 @@ const Image = styled.img`
 const BoxWrapper = styled.div`
     display: flex;
     align-items: flex-start;
-    margin: ${(props) => props.styled.margin}
+    margin: ${props => props.styled.margin}
     padding-bottom: ${(props) => props.styled.padding_bottom}px
-    width: ${(props) => props.styled.width}px
+    width: ${props => props.styled.width}px
     border-bottom: 2px solid #9370db;
     ${mediaMobile`
         width: ${calculate(250,320)}vw;
@@ -133,7 +133,7 @@ class Confirm extends Component {
             this.props.history.push('/form/receipt')
         }
     }
-    sendInformation = (e) => {
+    sendInformation = e => {
         e.preventDefault()
         this.props.changeLoading(true)
         const time = new Date()
@@ -163,7 +163,7 @@ class Confirm extends Component {
         return(
             <>  
                 <NoteText styled={{margin:"40px"}}>入力内容をご確認ください</NoteText>
-                <Form styled={{padding: "40px 0"}} id="form" onSubmit={(e) => {this.sendInformation(e)}}>
+                <Form styled={{padding: "40px 0"}} id="form" onSubmit={e => {this.sendInformation(e)}}>
                     <input type="hidden" name="image" value={app.image} />
                     <input type="hidden" name="FullName" value={app.form.last + app.form.first}/>
                     <input type="hidden" name="kana_FullName" value={app.form.kana_last + app.form.kana_first} />
@@ -184,7 +184,7 @@ class Confirm extends Component {
     }
 }
 
-const InputedText = (props) => {
+const InputedText = props => {
     return(
         <BoxWrapper styled={{margin: "60px auto 0",width: "600",padding_bottom:"10"}}>
             <InputedTitle>{props.text.title}:</InputedTitle>

@@ -25,7 +25,7 @@ const Button = styled.div`
     }
 `
 
-export default (props) => {
+export default props => {
     return(
         <Link to="/form/receipt"><Button margin={props.margin}>応募する</Button></Link>
     )

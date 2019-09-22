@@ -9,7 +9,7 @@ const LoginPanel = styled.div`
     box-sizing: unset;
 `
 
-const LoginForm = (props) => {
+const LoginForm = props => {
 
     const [tabIndex, tabChange] = useState(1)
 

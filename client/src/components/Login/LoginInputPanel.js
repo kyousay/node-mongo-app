@@ -100,7 +100,7 @@ const InputForm = (props) => {
         <>
             <Form onSubmit={(e) => submitForm(e)}>
                 <Input type="text" id = "form_name" value={value.name} placeholder="名前" onChange={(e) => setValue({...value,name:e.target.value})} />
-                <Input type="password" id ="form_password" value={value.password} placeholder="パスワード" onChange={(e) => setValue({...value,password:e.target.value})}/>
+                <Input type="password" id ="form_password" value={value.password} placeholder="パスワード" onChange={e => setValue({...value,password:e.target.value})}/>
                 <Button type="send" styled={{width:"280",bgColor:"#bf87c1"}}>{props.main}</Button>
             </Form>
                 <Navi>または</Navi>

@@ -7,7 +7,7 @@ import { mediaMobile } from '../../styles/common'
 import { calculate } from '../../styles/common'
 
 const FormPartsWrapper = styled.div`
-    padding: ${(props) => props.styled.padding};
+    padding: ${props => props.styled.padding};
     font-size: 1.5rem;
     text-align: left;
     ${mediaMobile`
@@ -18,8 +18,8 @@ const FormPartsWrapper = styled.div`
 
 const FormPartsInput = styled.input`
     display: block;
-    margin-top: ${(props) => props.styled.margin_top};
-    width: ${(props) => props.styled.width}
+    margin-top: ${props => props.styled.margin_top};
+    width: ${props => props.styled.width}
     font-size: 2.0rem;
     border-radius: 3px;
     border: 1px solid #cdcdcd;
@@ -42,7 +42,7 @@ const FormPartsText = styled.p`
 const InvalidText = styled.p`
     display: none;
     font-size: 1.5rem;
-    margin-top: ${(props) => props.styled.margin_top};
+    margin-top: ${props => props.styled.margin_top};
     color: #ff4500;
     ${mediaMobile`
         font-size: ${calculate(10,320)}vw;
@@ -54,7 +54,7 @@ const ItemTitle = styled.p`
     font-size: 1.5rem;
     color: #696969;
     margin-top: 30px;
-    margin-right: ${(props) => props.styled.margin_right};
+    margin-right: ${props => props.styled.margin_right};
     ${mediaMobile`
         margin-top: ${calculate(20,320)}vw;
         margin-right: 0;
@@ -92,7 +92,7 @@ const Button = styled.button`
     width: 200px;
     padding: 20px;
     font-size: 1.5rem;
-    background-color: ${(props) => props.styled.backgroundCol};
+    background-color: ${props => props.styled.backgroundCol};
     color: #fff;
     border-radius: 5px;
     border: none;
@@ -140,7 +140,7 @@ class TextForm extends Component {
             this.props.history.push('/form/confirm')
         }
     }
-    emptyNote = (states) => {
+    emptyNote = states => {
         let invalidNote = document.getElementsByClassName('js-validation')
         let result = true
         Object.values(states).forEach((state,index) => {
@@ -191,7 +191,7 @@ class TextForm extends Component {
     }
 }
 
-const FormName = (props) => {
+const FormName = props => {
     const { name1,name2 } = props.note
     const { margin_value } = props
     const { id1,id2 } = props.type
@@ -203,14 +203,14 @@ const FormName = (props) => {
                     <FlexBox>
                         <ItemTitle styled={{margin_right: margin_value}}>{name1}</ItemTitle>
                         <div>
-                            <FormPartsInput type="text" styled={{margin_top: "20px",width: "350px"}} value={props[id1]} onChange={(e) => props.setValue(id1,e.target.value)}/>
+                            <FormPartsInput type="text" styled={{margin_top: "20px",width: "350px"}} value={props[id1]} onChange={e => props.setValue(id1,e.target.value)}/>
                             <InvalidText className="js-validation" styled={{margin_top: "10px"}}>※{name1}<span className="js-invalidText"></span></InvalidText>
                         </div>
                     </FlexBox>
                     <FlexBox>
                         <ItemTitle styled={{margin_right: margin_value}}>{name2}</ItemTitle>
                         <div>
-                            <FormPartsInput type="text" styled={{margin_top: "20px",width: "350px"}} value={props[id2]} onChange={(e) => props.setValue(id2,e.target.value)}/>
+                            <FormPartsInput type="text" styled={{margin_top: "20px",width: "350px"}} value={props[id2]} onChange={e => props.setValue(id2,e.target.value)}/>
                             <InvalidText className="js-validation" styled={{margin_top: "10px"}}>※{name2}<span className="js-invalidText"></span></InvalidText>
                         </div>
                     </FlexBox>
@@ -219,18 +219,18 @@ const FormName = (props) => {
     )
 } 
 
-const FormMail = (props) => {
+const FormMail = props => {
     const { type } = props
     return(
         <FormPartsWrapper styled={{padding:"40px 0"}}>  
             <FormPartsText>{props.text}</FormPartsText>
-            <FormPartsInput type="text" styled={{margin_top:"20px",width: "100%"}} value={props[type]} onChange={(e) => props.setValue(type,e.target.value)}/>
+            <FormPartsInput type="text" styled={{margin_top:"20px",width: "100%"}} value={props[type]} onChange={e => props.setValue(type,e.target.value)}/>
             <InvalidText className="js-validation" styled={{margin_top: "10px"}}>※{props.text}<span className="js-invalidText" id={type}></span></InvalidText>
         </FormPartsWrapper>
     )
 }
 
-const FormButton = (props) => {
+const FormButton = props => {
     return(
         <ButtonContainer styled={{padding: "40px 0"}}>
             <Link to="/form/receipt"><Button styled={{backgroundCol: "#ff4500"}}>レシート撮影画面へ</Button></Link>

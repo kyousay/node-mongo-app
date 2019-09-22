@@ -24,7 +24,7 @@ export const Section = styled.section`
 `
 
 export const FormWrapper = styled.div`
-    padding: ${(props) => props.padding}px 0;
+    padding: ${props => props.padding}px 0;
     text-align:center;
     color: #9370db;
     ${mediaMobile`

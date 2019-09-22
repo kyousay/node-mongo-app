@@ -32,7 +32,7 @@ const Button = styled.div`
     }
 `
 
-const Logout = (props) => {
+const Logout = props => {
     const purge = () => {
         props.userReset()
     }

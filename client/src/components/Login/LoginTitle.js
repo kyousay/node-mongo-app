@@ -7,7 +7,7 @@ const Title = styled.p`
     padding: 18px 0;
 `
 
-const LoginTitle = (props) => {
+const LoginTitle = props => {
     return(
         <Title> {props.title}</Title>
     )

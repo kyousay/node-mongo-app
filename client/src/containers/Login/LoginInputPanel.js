@@ -2,18 +2,18 @@ import loginInputPanel from '../../components/Login/LoginInputPanel'
 import { connect } from 'react-redux'
 import { createAcount,loginAcount } from '../../actions/'
 
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
     return{
         ...state
     }
 }
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = dispatch => {
     return{
-        createAcount:(data) => {
+        createAcount: data => {
             dispatch(createAcount(data))
         },
-        loginAcount: (data) => {
+        loginAcount: data => {
             dispatch(loginAcount(data))
         },
     }

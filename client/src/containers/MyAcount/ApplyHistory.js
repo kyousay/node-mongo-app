@@ -10,10 +10,10 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return{
-        getHistory:(id) => {
+        getHistory: id => {
             dispatch(getHistory(id))
         },
-        deleteHistory: (_id) => {
+        deleteHistory: _id => {
             dispatch(deleteHistory(_id))
         }
     }

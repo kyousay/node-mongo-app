@@ -108,8 +108,8 @@ const PreviewInputText = styled.p`
     line-height: 1.5;
     margin: 20px auto 0;
     font-size: 1.5rem;
-    color: ${(props) => props.color};
-    font-weight: ${(props => props.weight)}
+    color: ${props => props.color};
+    font-weight: ${props => props.weight}
     text-align : center;
     word-break: break-word;
     ${mediaMobile`
@@ -194,7 +194,7 @@ const Button = styled.button`
     width: 200px;
     padding: 20px;
     font-size: 1.5rem;
-    background-color: ${(props) => props.backgroundCol};
+    background-color: ${props => props.backgroundCol};
     color: #fff;
     border-radius: 5px;
     border: none;
@@ -214,7 +214,7 @@ export default class extends Component{
         }
     }
 
-    setPreview = (e) => {
+    setPreview = e => {
         const files = e.target.files
         if(!files.length) return false
         const flg = this.validation(files)
@@ -223,7 +223,7 @@ export default class extends Component{
         }
     }
 
-    emptyNotice = (e) => {
+    emptyNotice = e => {
         const errorText = document.getElementsByClassName('js-invalidText')[0]
         if(!this.state.image){
             e.preventDefault()
@@ -233,7 +233,7 @@ export default class extends Component{
             errorText.style.display = 'none'
     }
 
-    validation = (files) => {
+    validation = files => {
         const errorText = document.getElementsByClassName('js-invalidText')[0]
         let result = false;
         if(files[0].size < 2000000){
@@ -247,7 +247,7 @@ export default class extends Component{
         return result;
     }
 
-    convertImage = (file) => {
+    convertImage = file => {
         const reader = new FileReader()
         reader.addEventListener('load',() => {
             this.props.setImage(reader.result,file.name)

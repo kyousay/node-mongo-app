@@ -91,7 +91,7 @@ export default () => {
     )
 }
 
-const Box = (props) => {
+const Box = props => {
     return(
         <ImageBox>
             <Image src={props.img} alt={props.title} />

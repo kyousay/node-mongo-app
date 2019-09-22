@@ -67,7 +67,7 @@ export default () => {
     )
 }
 
-const ImageContent = (props) => {
+const ImageContent = props => {
     return(
         <ImageBox>
             <Image src={props.src}/>

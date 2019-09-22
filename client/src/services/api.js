@@ -6,8 +6,7 @@ export const postDataFactory = (connectConfig = {}) => {
     }
     const instance = axios.create(config)
 
-    const postData = async (data) => {
-        console.log(data)
+    const postData = async data => {
         try{
             const response = await instance.post('/upload',data)
 
@@ -30,7 +29,7 @@ export const createAcountFactory = (connectConfig = {}) => {
     }
     const instance = axios.create(config)
 
-    const createAcount = async (data) => {
+    const createAcount = async data => {
         try{
             const response = await instance.post('/createAcount',data)
 
@@ -53,7 +52,7 @@ export const loginAcountFactory = (connectConfig = {}) => {
     }
     const instance = axios.create(config)
 
-    const loginAcount = async (data) => {
+    const loginAcount = async data => {
         try{
             const response = await instance.post('/login',data)
 
@@ -76,7 +75,7 @@ export const upLoadThumbnailFactory = (connectConfig = {}) => {
     }
     const instance = axios.create(config)
 
-    const upLoadThumbnail = async (data) => {
+    const upLoadThumbnail = async data => {
         try{
             const response = await instance.post('/mypage',data)
 
@@ -99,7 +98,7 @@ export const updateDBFactory = (connectConfig = {}) => {
     }
     const instance = axios.create(config)
 
-    const updateDB = async (data) => {
+    const updateDB = async data => {
         try{
             const response = await instance.post('/mypage/change',data)
 
@@ -122,7 +121,7 @@ export const getHistoryFactory = (connectConfig = {}) => {
     }
     const instance = axios.create(config)
 
-    const getHistory = async (data) => {
+    const getHistory = async data => {
         try{
             const response = await instance.post('/mypage/history',data)
 
@@ -145,7 +144,7 @@ export const deleteHistoryFactory = (connectConfig = {}) => {
     }
     const instance = axios.create(config)
 
-    const deleteHistory = async (data) => {
+    const deleteHistory = async data => {
         try{
             const response = await instance.post('/mypage/history/delete',data)
 

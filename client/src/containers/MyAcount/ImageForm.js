@@ -2,15 +2,15 @@ import { connect } from 'react-redux'
 import { upLoadThumbnail} from '../../actions'
 import ImageForm from '../../components/MyAcount/ImageForm'
 
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
     return{
         ...state
     }
 }
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = dispatch => {
     return{
-        upLoadThumbnail: (img) => {
+        upLoadThumbnail: img => {
             dispatch(upLoadThumbnail(img))
         }
     }

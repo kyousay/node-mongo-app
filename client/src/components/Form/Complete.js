@@ -5,9 +5,9 @@ import { mediaMobile } from '../../styles/common'
 import { calculate } from '../../styles/common'
 
 const TextBox = styled.div`
-    width: ${(props) => props.styled.width}px
-    margin: ${(props) => props.styled.margin}
-    padding: ${(props) => props.styled.padding}
+    width: ${props => props.styled.width}px
+    margin: ${props => props.styled.margin}
+    padding: ${props => props.styled.padding}
     border: 2px solid #9370db;
     line-height: 1.5;
     text-align: center;
@@ -19,9 +19,9 @@ const TextBox = styled.div`
 `
 
 const ThankText = styled.h2`
-    font-size: ${(props) => props.styled.font_size}rem
-    font-weight: ${(props) => props.styled.font_weight}
-    color: ${(props) => props.styled.color}
+    font-size: ${props => props.styled.font_size}rem
+    font-weight: ${props => props.styled.font_weight}
+    color: ${props => props.styled.color}
     ${mediaMobile`
         font-size: ${calculate(16,320)}vw;
     `}
@@ -39,7 +39,7 @@ const NoteParagragh = styled.p`
 `
 
 const FormPartsWrapper = styled.div`
-    padding: ${(props) => props.styled.padding};
+    padding: ${props => props.styled.padding};
     font-size: 1.5rem;
     text-align: center;
     ${mediaMobile`
@@ -62,7 +62,7 @@ const Button = styled.button`
     width: 200px;
     padding: 20px;
     font-size: 1.5rem;
-    background-color: ${(props) => props.styled.backgroundCol};
+    background-color: ${props => props.styled.backgroundCol};
     color: #fff;
     border-radius: 5px;
     border: none;

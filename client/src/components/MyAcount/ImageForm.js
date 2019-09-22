@@ -14,7 +14,7 @@ const ImageInputLabel = styled.label`
     color: #fff;
     background-color: #9370db;
     ${mediaMobile`
-        font-size: ${calculate(15,320)}vw;
+        font-size: ${calculate(10,320)}vw;
         margin-right: 0;
         padding: ${calculate(8,320)}vw 0;
     `}
@@ -41,11 +41,11 @@ const UserName = styled.p`
     font-size: 3.0rem;
 `
 
-const ImageForm = (props) => {
+const ImageForm = props => {
     const { loginName } = props.user
     const [img,setImg] = useState()
 
-    const convertImage = (file) => {
+    const convertImage = file => {
         const reader = new FileReader()
         reader.addEventListener('load',() => {
             setImg(reader.result)
@@ -58,7 +58,7 @@ const ImageForm = (props) => {
         reader.readAsDataURL(file)
     }
 
-    const setImage = (e) => {
+    const setImage = e => {
         const files = e.target.files
         if(!files.length) return false
         convertImage(files[0])

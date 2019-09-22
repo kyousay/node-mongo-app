@@ -2,15 +2,15 @@ import { connect } from 'react-redux'
 import index from '../../components/Login'
 import { changeLoading } from '../../actions/'
 
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
     return{
         ...state
     }
 }
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = dispatch => {
     return{
-        changeLoading: (boolean) => {
+        changeLoading: boolean => {
             dispatch(changeLoading(boolean))
         }
     }

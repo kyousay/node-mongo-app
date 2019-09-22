@@ -6,7 +6,7 @@ import { mediaMobile } from '../../styles/common'
 import { calculate } from '../../styles/common'
 
 const FormPartsWrapper = styled.div`
-    padding: ${(props) => props.styled.padding};
+    padding: ${props => props.styled.padding};
     font-size: 1.5rem;
     text-align: left;
     ${mediaMobile`
@@ -17,8 +17,8 @@ const FormPartsWrapper = styled.div`
 
 const FormPartsInput = styled.input`
     display: block;
-    margin-top: ${(props) => props.styled.margin_top};
-    width: ${(props) => props.styled.width}
+    margin-top: ${props => props.styled.margin_top};
+    width: ${props => props.styled.width}
     font-size: 2.0rem;
     border-radius: 3px;
     border: 1px solid #cdcdcd;
@@ -41,7 +41,7 @@ const FormPartsText = styled.p`
 const InvalidText = styled.p`
     display: none;
     font-size: 1.5rem;
-    margin-top: ${(props) => props.styled.margin_top};
+    margin-top: ${props => props.styled.margin_top};
     color: #ff4500;
     ${mediaMobile`
         font-size: ${calculate(10,320)}vw;
@@ -53,7 +53,7 @@ const ItemTitle = styled.p`
     font-size: 1.5rem;
     color: #696969;
     margin-top: 30px;
-    margin-right: ${(props) => props.styled.margin_right};
+    margin-right: ${props => props.styled.margin_right};
     ${mediaMobile`
         margin-top: ${calculate(20,320)}vw;
         margin-right: 0;
@@ -91,7 +91,7 @@ const Button = styled.button`
     width: 200px;
     padding: 20px;
     font-size: 1.5rem;
-    background-color: ${(props) => props.styled.backgroundCol};
+    background-color: ${props => props.styled.backgroundCol};
     color: #fff;
     border-radius: 5px;
     border: none;
@@ -105,12 +105,10 @@ const Button = styled.button`
 
 const Wrapper = styled.div`
     width: 960px;
-    
     margin: 0 auto;
     background-color: rgba(255,255,255,0.9);
     ${mediaMobile`
         width: auto;
-        padding: ${calculate(10,320)}vw
     `}
 `
 

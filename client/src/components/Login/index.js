@@ -1,7 +1,6 @@
 import React ,{useEffect}from 'react'
 import styled from 'styled-components'
 import { mediaMobile } from '../../styles/common'
-import { calculate } from '../../styles/common'
 import { withRouter } from 'react-router'
 import LoginForm from './LoginForm'
 import Header from '../../components/common/Header'
@@ -12,11 +11,10 @@ const Wrapper = styled.div`
     background-color: rgba(255,255,255,0.9);
     ${mediaMobile`
         width: auto;
-        padding: ${calculate(10,320)}vw
     `}
 `
 
-const Login = (props) => {
+const Login = props => {
     useEffect(() => {
         if(props.user.login){
             props.history.push('/mypage')

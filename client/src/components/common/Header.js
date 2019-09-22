@@ -3,6 +3,8 @@ import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 import logo from '../../styles/img/logo.jpg'
 import icon from '../../styles/img/icon.png'
+import { mediaMobile } from '../../styles/common'
+import { calculate } from '../../styles/common'
 
 const HeaderWrapper = styled.div`
     display: flex;
@@ -11,10 +13,16 @@ const HeaderWrapper = styled.div`
     height: 100px;
     background-color: #fff;
     border-bottom: 1px solid #cdcdcd;
+    ${mediaMobile`
+        height: 12vw;
+    `}
 `
 
 const HeaderLogo = styled.img`
     width: 300px;
+    ${mediaMobile`
+        width: 35vw;
+    `}
 `
 
 const LinkText = styled.p`
@@ -24,6 +32,10 @@ const LinkText = styled.p`
     color: #888888;
     padding: 25px 40px;
     margin-right: 20px;
+    ${mediaMobile`
+        font-size: ${calculate(10,320)}vw;
+        margin-right: 3vw;
+    `}
     &::before {
         position: absolute;
         content: '';
@@ -33,10 +45,16 @@ const LinkText = styled.p`
         height: 25px;
         transform: translateY(-50%);
         background: url(${icon})no-repeat center center;
+        ${mediaMobile`
+            background-size: cover;
+            left: 70%
+            width: ${calculate(25,320)}vw;
+            height: ${calculate(25,320)}vw;
+        `}
     }
 `
 
-const Header = (props) => {
+const Header = props => {
 
     return(
         <>
