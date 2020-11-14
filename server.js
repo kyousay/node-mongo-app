@@ -10,7 +10,8 @@ const port = process.env.PORT || 3001
 const dbUrl = process.env.DB_URI
 
 console.log(dbUrl);
-
+console.log(dbUrl);
+console.log(dbUrl);
 
 app.use(express.static(path.join(__dirname, 'client/build')))
 app.use(bodyParser.urlencoded({ limit: "50mb", extended: true, parameterLimit: 50000 }))
