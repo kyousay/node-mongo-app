@@ -8,16 +8,16 @@ import User from './user'
 const app = express()
 const port = process.env.PORT || 3001
 const dbUrl = process.env.DB_URI
+const dbName = process.env.DB_NAME
 
 console.log(dbUrl);
-console.log(dbUrl);
-console.log(dbUrl);
+console.log(dbName);
 
 app.use(express.static(path.join(__dirname, 'client/build')))
 app.use(bodyParser.urlencoded({ limit: "50mb", extended: true, parameterLimit: 50000 }))
 app.use(bodyParser.json({ limit: "50mb" }))
 
-mongoose.connect(dbUrl, dbErr => {
+mongoose.connect(dbUrl, { dbName }, dbErr => {
     if(dbErr) throw new Error(dbErr)
     else console.log('db connected')
 
