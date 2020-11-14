@@ -12,6 +12,10 @@ const dbName = process.env.DB_NAME
 
 console.log(dbUrl);
 console.log(dbName);
+console.log(dbUrl);
+console.log(dbName);
+console.log(dbUrl);
+console.log(dbName);
 
 app.use(express.static(path.join(__dirname, 'client/build')))
 app.use(bodyParser.urlencoded({ limit: "50mb", extended: true, parameterLimit: 50000 }))
